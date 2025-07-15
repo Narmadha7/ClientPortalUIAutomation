@@ -2,6 +2,8 @@ import time
 
 from selenium.webdriver.common.by import By
 
+from pages.ForgotPassPage import ForgotPassPage
+
 
 class LoginPage:
     def __init__(self, driver):
@@ -62,23 +64,21 @@ class LoginPage:
         assert self.driver.find_element(*self.blink_text).text == "Register to sign in with your personal account"
         assert self.driver.find_element(*self.login_title).text == "Log in"
 
+    def validate_forgot_pass(self):
         forgot_pass = self.driver.find_element(*self.forgot_pass)
         forgot_pass.is_displayed()
         assert forgot_pass.text in self.driver.page_source
 
+    def validate_register_link(self):
         register_link = self.driver.find_element(*self.register_link)
         register_link.is_displayed()
         assert register_link.text == "Don't have an account? Register here"
 
 
-
     def login(self):
-        self.top_text()
-        self.validate_icons()
-        self.validate_page_texts_and_ui()
-        self.valid_email_check()
-        self.valid_password_check()
-        self.submit_check()
+        assert "client" in self.driver.current_url
+        print("Title is:", self.driver.title)
+
 
 
 

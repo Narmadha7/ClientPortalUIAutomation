@@ -1,5 +1,4 @@
 import pytest
-from pygments.lexer import default
 from selenium import webdriver
 
 def pytest_addoption(parser):
@@ -10,11 +9,11 @@ def browserInstance(request):
     browser_name = request.config.getoption("browser_name")
     if browser_name == "chrome":
         driver = webdriver.Chrome()
-        driver.implicitly_wait(3)
-
     elif browser_name == "firefox":
         driver = webdriver.Firefox()
-        driver.implicitly_wait(3)
 
+    driver.implicitly_wait(3)
+    driver.get("https://rahulshettyacademy.com/client")
+    driver.maximize_window()
     yield driver
     driver.close()

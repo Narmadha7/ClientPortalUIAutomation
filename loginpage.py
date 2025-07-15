@@ -2,6 +2,8 @@ import time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC, wait
 
 driver = webdriver.Chrome()
 
@@ -65,4 +67,40 @@ submit_button.click()
 time.sleep(3)
 assert "dash" in driver.current_url
 
+items_list = driver.find_elements(By.CSS_SELECTOR, ".mb-3")
+
+for item in items_list:
+    name = item.find_element(By.CSS_SELECTOR, "b").text
+    if name == "ZARA COAT 3":
+        item.find_element(By.CSS_SELECTOR, "button.w-10").click()
+        print("Item found!!")
+        break
+
+time.sleep(4)
+
+driver.find_element(By.XPATH, "(//i[@class='fa fa-shopping-cart'])[1]").click()
+
+time.sleep(4)
+
+driver.find_element(By.XPATH, "//button[contains(text(),'Checkout')]").click()
+
+
+time.sleep(4)
+driver.find_element(By.CSS_SELECTOR, "input[placeholder='Select Country']").send_keys("ind")
+wait = WebDriverWait(driver, 10)
+wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".ta-results")))
+
+# Select "India"
+countries = driver.find_elements(By.CSS_SELECTOR, ".ta-results button")
+for country in countries:
+    if country.text == "India":
+        country.click()
+        break
+
+driver.find_element(By.XPATH, "//div[@class='actions']/a").click()
+time.sleep(4)
+
+print(driver.find_element(By.CSS_SELECTOR, ".hero-primary").text)
+
+time.sleep(4)
 

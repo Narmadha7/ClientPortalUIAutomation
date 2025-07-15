@@ -102,5 +102,4 @@ time.sleep(4)
 
 print(driver.find_element(By.CSS_SELECTOR, ".hero-primary").text)
 
-time.sleep(4)
 

@@ -58,7 +58,7 @@ assert label_pass.text.title() == "Password"
 password = driver.find_element(By.ID, "userPassword")
 assert password.is_displayed()
 print("Placeholder password:", password.get_attribute("placeholder"))
-password.send_keys("Brain@123")
+password.send_keys("Brain@1234")
 time.sleep(2)
 submit_button = driver.find_element(By.ID, "login")
 submit_button.is_enabled()

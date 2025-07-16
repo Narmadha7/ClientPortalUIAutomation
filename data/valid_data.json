@@ -1,0 +1,10 @@
+{
+  "data" : [
+    {
+      "user_email" : "brainandbeauty@test.com",
+      "user_password" : "Brain@1234",
+      "product_name" : "ZARA COAT 3",
+      "country_name" : "ind"
+    }
+  ]
+}

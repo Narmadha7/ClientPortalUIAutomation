@@ -2,7 +2,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from pages.ForgotPassPage import ForgotPassPage
+from pages.HomePage import HomePage
 
 
 class LoginPage:
@@ -23,20 +23,20 @@ class LoginPage:
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
         self.register_link = (By.CSS_SELECTOR, ".login-wrapper p")
 
-    def valid_email_check(self):
+    def valid_email_check(self, username):
         assert self.driver.find_element(*self.label_email).text.title() == "Email"
         email = self.driver.find_element(*self.email)
         assert email.is_displayed()
         assert email.get_attribute("placeholder") == "email@example.com"
-        email.send_keys("brainandbeauty@test.com")
+        email.send_keys(username)
 
 
-    def valid_password_check(self):
+    def valid_password_check(self, user_password):
         assert self.driver.find_element(*self.label_password).text.title() == "Password"
         password = self.driver.find_element(*self.password)
         assert password.is_displayed()
         assert password.get_attribute("placeholder") == "enter your passsword"
-        password.send_keys("Brain@123")
+        password.send_keys(user_password)
 
 
     def submit_check(self):
@@ -44,6 +44,8 @@ class LoginPage:
         assert submit_button.is_enabled()
         submit_button.click()
         time.sleep(3)
+        homepage = HomePage(self.driver)
+        return homepage
 
 
     def top_text(self):
@@ -74,10 +76,13 @@ class LoginPage:
         register_link.is_displayed()
         assert register_link.text == "Don't have an account? Register here"
 
-
     def login(self):
         assert "client" in self.driver.current_url
         print("Title is:", self.driver.title)
+
+    def click_forgot_pass(self):
+        self.driver.find_element(*self.forgot_pass).click()
+        time.sleep(2)
 
 
 

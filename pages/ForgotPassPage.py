@@ -1,7 +1,5 @@
 import time
-
 from selenium.webdriver.common.by import By
-
 class ForgotPassPage:
 
     def __init__(self, driver):
@@ -14,38 +12,48 @@ class ForgotPassPage:
         self.password = (By.CSS_SELECTOR, "#userPassword")
         self.confirm_pass = (By.ID, "confirmPassword")
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
+        self.submit_button = (By.CSS_SELECTOR, ".btn")
+        self.login_link = (By.LINK_TEXT, "Login")
+        self.register_link = (By.LINK_TEXT, "Register")
 
-    def click_forgot_pass(self):
-        forgot_pass = self.driver.find_element(*self.forgot_pass)
-        forgot_pass.click()
-        time.sleep(4)
 
     def login(self):
         assert "client" in self.driver.current_url
         print("Title is:", self.driver.title)
 
     def validate_email(self):
-        # assert self.label_email == "Email"
+        assert self.driver.find_element(*self.label_email).text.title() == "Email"
         email = self.driver.find_element(*self.email)
         email.is_displayed()
         print(email.get_attribute("placeholder"))
-        email.send_keys("brainandbeauty@test.com")
-        time.sleep(4)
+        email.send_keys("brainandbeauty@test")
+        time.sleep(2)
 
     def validate_password(self):
-        # assert self.label_password == "Password"
+        assert self.driver.find_element(*self.label_password).text.title() == "Password"
         password = self.driver.find_element(*self.password)
         password.is_displayed()
         print(password.get_attribute("placeholder"))
         password.send_keys("Brain@1234")
-        time.sleep(4)
+        time.sleep(2)
 
     def validate_confirm_password(self):
         # assert self.label_confirm_pass == "Confirm Password"
         confirm_password = self.driver.find_element(*self.confirm_pass)
         confirm_password.is_displayed()
         print(confirm_password.get_attribute("placeholder"))
-        confirm_password.send_keys("Brain@1234")
-        time.sleep(4)
+        confirm_password.send_keys("Brain@12")
+        time.sleep(2)
+
+    def click_submit(self):
+        button = self.driver.find_element(*self.submit_button)
+        assert button.is_enabled()
+        button.click()
+
+    def validate_login_link(self):
+        self.driver.find_element(*self.login_link).is_displayed()
+
+    def validate_register_link(self):
+        self.driver.find_element(*self.register_link).is_displayed()
 
 

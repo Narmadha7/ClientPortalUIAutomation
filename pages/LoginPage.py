@@ -23,20 +23,38 @@ class LoginPage:
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
         self.register_link = (By.CSS_SELECTOR, ".login-wrapper p")
 
-    def valid_email_check(self, username):
+    def email_label_check(self):
         assert self.driver.find_element(*self.label_email).text.title() == "Email"
+
+    def valid_email_check(self, username):
         email = self.driver.find_element(*self.email)
         assert email.is_displayed()
         assert email.get_attribute("placeholder") == "email@example.com"
         email.send_keys(username)
 
+    def wrong_email_check(self, wrong_email, user_password):
+        email = self.driver.find_element(*self.email)
+        email.send_keys(wrong_email)
+        password = self.driver.find_element(*self.password)
+        password.send_keys(user_password)
+        self.driver.find_element(*self.submit).click()
+
+
+    def password_label_check(self):
+        assert self.driver.find_element(*self.label_password).text.title() == "Password"
 
     def valid_password_check(self, user_password):
-        assert self.driver.find_element(*self.label_password).text.title() == "Password"
         password = self.driver.find_element(*self.password)
         assert password.is_displayed()
         assert password.get_attribute("placeholder") == "enter your passsword"
         password.send_keys(user_password)
+
+    def wrong_pass_check(self, username, wrong_pass):
+        email = self.driver.find_element(*self.email)
+        email.send_keys(username)
+        password = self.driver.find_element(*self.password)
+        password.send_keys(wrong_pass)
+        self.driver.find_element(*self.submit).click()
 
 
     def submit_check(self):

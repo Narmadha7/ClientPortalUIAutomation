@@ -18,6 +18,8 @@ def test_payment(browserInstance,data_items):
     login_page.top_text()
     login_page.validate_icons()
     login_page.validate_page_texts_and_ui()
+    login_page.email_label_check()
+    login_page.password_label_check()
     login_page.valid_email_check(data_items["user_email"])
     login_page.valid_password_check(data_items["user_password"])
     login_page.validate_forgot_pass()

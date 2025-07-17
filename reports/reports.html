@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title id="head-title">report.html</title>
+    <title id="head-title">reports.html</title>
       <link href="assets\style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <h1 id="title">report.html</h1>
-    <p>Report generated on 16-Jul-2025 at 23:16:56 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+    <h1 id="title">reports.html</h1>
+    <p>Report generated on 17-Jul-2025 at 23:17:12 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
         v4.1.1</p>
     <div id="environment-header">
       <h2>Environment</h2>
@@ -71,10 +71,10 @@
         <div class="summary__spacer"></div>
         <div class="controls">
           <div class="filters">
-            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" />
-            <span class="failed">1 Failed,</span>
-            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" disabled/>
-            <span class="passed">0 Passed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" disabled/>
+            <span class="failed">0 Failed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" />
+            <span class="passed">1 Passed,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled/>
             <span class="skipped">0 Skipped,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled/>
@@ -108,7 +108,7 @@
     </table>
   </body>
   <footer>
-    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.13.5&#34;, &#34;Platform&#34;: &#34;Windows-11-10.0.26100-SP0&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.4.1&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.8.0&#34;}}, &#34;tests&#34;: {&#34;tests/test_forgotpass.py::test_forgotPass&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;tests/test_forgotpass.py::test_forgotPass&#34;, &#34;duration&#34;: &#34;00:00:16&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_forgotpass.py::test_forgotPass&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:16&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;browserInstance = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;12319e88c32cda0c966bfac8789bdf7e&amp;quot;)&amp;gt;\n\n    def test_forgotPass(browserInstance):\n        driver = browserInstance\n    \n        forgot_page = ForgotPassPage(driver)\n        loginpage = LoginPage(driver)\n        loginpage.click_forgot_pass()\n        forgot_page.login()\n        forgot_page.validate_email()\n        forgot_page.validate_password()\n        forgot_page.validate_confirm_password()\n        forgot_page.validate_login_link()\n        forgot_page.validate_register_link()\n        forgot_page.click_submit()\n        time.sleep(4)\n    \n    \n        try:\n&amp;gt;           assert &amp;quot;login&amp;quot; in driver.current_url\nE           assert &amp;#x27;login&amp;#x27; in &amp;#x27;https://rahulshettyacademy.com/client/#/auth/password-new&amp;#x27;\nE            +  where &amp;#x27;https://rahulshettyacademy.com/client/#/auth/password-new&amp;#x27; = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;12319e88c32cda0c966bfac8789bdf7e&amp;quot;)&amp;gt;.current_url\n\ntests\\test_forgotpass.py:25: AssertionError\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;report.html&#34;}"></div>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.13.5&#34;, &#34;Platform&#34;: &#34;Windows-11-10.0.26100-SP0&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.4.1&#34;, &#34;pluggy&#34;: &#34;1.6.0&#34;}, &#34;Plugins&#34;: {&#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.8.0&#34;}}, &#34;tests&#34;: {&#34;tests/test_forgotpass.py::test_forgotPass&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_forgotpass.py::test_forgotPass&#34;, &#34;duration&#34;: &#34;00:00:16&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_forgotpass.py::test_forgotPass&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:16&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;reports.html&#34;}"></div>
     <script>
       (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')

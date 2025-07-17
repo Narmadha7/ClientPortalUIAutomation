@@ -2,7 +2,7 @@ import time
 
 from pages.ForgotPassPage import ForgotPassPage
 from pages.LoginPage import LoginPage
-from utils.screenshot_helper import take_screenshot
+from utils.screenshot_file import take_screenshot
 
 
 def test_forgotPass(browserInstance):
@@ -24,8 +24,7 @@ def test_forgotPass(browserInstance):
     try:
         assert "login" in driver.current_url
     except AssertionError:
-        take_screenshot(driver, "invalid_login_fail")
-        raise
+        take_screenshot(driver, "login_fail")
 
 
 

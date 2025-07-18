@@ -2,8 +2,16 @@
   <dictionary name="project">
     <words>
       <w>addoption</w>
+      <w>asctime</w>
+      <w>brainandbeauty</w>
+      <w>formcontrolname</w>
+      <w>headcolor</w>
+      <w>levelname</w>
+      <w>loggername</w>
+      <w>narmukishore</w>
       <w>passsword</w>
       <w>pytestconfig</w>
+      <w>vedha</w>
     </words>
   </dictionary>
 </component>

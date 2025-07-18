@@ -14,7 +14,7 @@ class LoginPage:
         self.label_email = (By.XPATH, "//label[@for='email']")
         self.label_password = (By.XPATH, "//label[@for='password']")
         self.mail_top_text = (By.XPATH, "//div[@class='top-tab']/span[1]/a")
-        self.top_icons =(By.CSS_SELECTOR, ".fa")
+        self.top_icons = (By.CSS_SELECTOR, ".fa")
         self.small_text = (By.XPATH, "//h3[text()='We Make Your Shopping Simple']")
         self.title_text = (By.XPATH, "(//h1[@class='title'])[1]")
         self.blink_text = (By.CSS_SELECTOR, ".blink_me")
@@ -39,7 +39,6 @@ class LoginPage:
         password.send_keys(user_password)
         self.driver.find_element(*self.submit).click()
 
-
     def password_label_check(self):
         assert self.driver.find_element(*self.label_password).text.title() == "Password"
 
@@ -56,7 +55,6 @@ class LoginPage:
         password.send_keys(wrong_pass)
         self.driver.find_element(*self.submit).click()
 
-
     def submit_check(self):
         submit_button = self.driver.find_element(*self.submit)
         assert submit_button.is_enabled()
@@ -64,7 +62,6 @@ class LoginPage:
         time.sleep(3)
         homepage = HomePage(self.driver)
         return homepage
-
 
     def top_text(self):
         mail_text = self.driver.find_element(*self.mail_top_text)
@@ -102,7 +99,6 @@ class LoginPage:
         self.driver.find_element(*self.forgot_pass).click()
         time.sleep(2)
 
-
-
-
-
+    def click_register_link(self):
+        self.driver.find_element(*self.register_link).click()
+        time.sleep(2)

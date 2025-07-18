@@ -10,8 +10,9 @@ with open(data_file_path) as f:
     testdata = json.load(f)
     data_list = testdata["data"]
 
-@pytest.mark.parametrize("data_items",data_list)
-def test_payment(browserInstance,data_items):
+
+@pytest.mark.parametrize("data_items", data_list)
+def test_payment(browserInstance, data_items):
     driver = browserInstance
     login_page = LoginPage(driver)
     login_page.login()
@@ -30,11 +31,11 @@ def test_payment(browserInstance,data_items):
 
     homepage.add_product_to_cart(data_items["product_name"])
     time.sleep(4)
-    cartpage = homepage.click_add_to_cart()
+    cart_page = homepage.click_add_to_cart()
     time.sleep(4)
 
     assert "cart" in driver.current_url
 
-    payment = cartpage.click_checkout_button()
+    payment = cart_page.click_checkout_button()
     success = payment.enter_ship_info(data_items["country_name"])
     success.validate_success_msg()

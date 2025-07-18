@@ -9,8 +9,8 @@ def test_forgotPass(browserInstance):
     driver = browserInstance
 
     forgot_page = ForgotPassPage(driver)
-    loginpage = LoginPage(driver)
-    loginpage.click_forgot_pass()
+    login_page = LoginPage(driver)
+    login_page.click_forgot_pass()
     forgot_page.login()
     forgot_page.validate_email()
     forgot_page.validate_password()
@@ -20,11 +20,7 @@ def test_forgotPass(browserInstance):
     forgot_page.click_submit()
     time.sleep(4)
 
-
     try:
         assert "login" in driver.current_url
     except AssertionError:
         take_screenshot(driver, "login_fail")
-
-
-

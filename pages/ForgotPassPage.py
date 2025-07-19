@@ -28,6 +28,7 @@ class ForgotPassPage(BasePage):
 
     def validate_email(self):
         # assert self.driver.find_element(*self.label_email).text.title() == "Email"
+        assert self.get_text(self.label_email) == "Email"
         # email = self.driver.find_element(*self.email)
         # email.is_displayed()
         # print(email.get_attribute("placeholder"))
@@ -38,6 +39,7 @@ class ForgotPassPage(BasePage):
 
     def validate_password(self):
         # assert self.driver.find_element(*self.label_password).text.title() == "Password"
+        assert self.get_text(self.label_password) == "Password"
         # password = self.driver.find_element(*self.password)
         # password.is_displayed()
         # print(password.get_attribute("placeholder"))
@@ -47,7 +49,9 @@ class ForgotPassPage(BasePage):
         time.sleep(2)
 
     def validate_confirm_password(self):
-        # assert self.label_confirm_pass == "Confirm Password"
+        # assert self.driver.find_element(*self.label_confirm_pass).text.title() == "Confirm Password"
+        assert self.get_text(self.label_confirm_pass) == "Confirm Password"
+        print(self.get_text(self.label_confirm_pass))
         # confirm_password = self.driver.find_element(*self.confirm_pass)
         # confirm_password.is_displayed()
         self.is_displayed(self.confirm_pass)

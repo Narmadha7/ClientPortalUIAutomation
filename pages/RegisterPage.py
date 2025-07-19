@@ -1,9 +1,10 @@
 import time
 
+import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-
+@pytest.mark.usefixtures("selenium_driver")
 class RegisterPage:
     def __init__(self, driver):
         self.driver = driver

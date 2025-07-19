@@ -6,12 +6,10 @@ from pages.LoginPage import LoginPage
 from utils.screenshot_file import take_screenshot
 
 class TestForgotPassword:
-    def test_forgotPass(browserInstance):
-        driver = browserInstance
-        print(pytest.browser)
+    def test_forgotPass(self):
 
-        forgot_page = ForgotPassPage(driver)
-        login_page = LoginPage(driver)
+        forgot_page = ForgotPassPage(self.driver)
+        login_page = LoginPage(self.driver)
         login_page.click_forgot_pass()
         forgot_page.login()
         forgot_page.validate_email()
@@ -23,6 +21,6 @@ class TestForgotPassword:
         time.sleep(4)
 
         try:
-            assert "login" in driver.current_url
+            assert "login" in self.driver.current_url
         except AssertionError:
-            take_screenshot(driver, "login_fail")
+            take_screenshot(self.driver, "login_fail")

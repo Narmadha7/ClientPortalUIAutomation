@@ -57,7 +57,7 @@ class ForgotPassPage(BasePage):
         self.is_displayed(self.confirm_pass)
         # print(confirm_password.get_attribute("placeholder"))
         # confirm_password.send_keys("Brain@12")
-        self.type(self.confirm_pass, "Brain@12")
+        self.type(self.confirm_pass, "Brain@1234")
         time.sleep(2)
 
     def click_submit(self):

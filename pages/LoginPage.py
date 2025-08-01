@@ -1,8 +1,7 @@
 import time
 
 from selenium.webdriver.common.by import By
-
-from pages.HomePage import HomePage
+from selenium.webdriver.common.keys import Keys
 
 
 class LoginPage:
@@ -22,50 +21,62 @@ class LoginPage:
         self.page_title = ()
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
         self.register_link = (By.CSS_SELECTOR, ".login-wrapper p")
+        self.toast_msg = (By.CSS_SELECTOR, "#toast-container")
+        self.email_valid_error = (By.XPATH, "//div[contains(text(), '*Email is required')]")
+        self.password_valid_error = (By.XPATH, "//div[contains(text(), '*Password is required')]")
+        self.body = driver.find_element(By.TAG_NAME, "body")
 
     def email_label_check(self):
-        assert self.driver.find_element(*self.label_email).text.title() == "Email"
+        return self.driver.find_element(*self.label_email).text.title()
 
-    def valid_email_check(self, username):
-        email = self.driver.find_element(*self.email)
-        assert email.is_displayed()
-        assert email.get_attribute("placeholder") == "email@example.com"
-        email.send_keys(username)
+    def is_email_displayed(self):
+        return self.driver.find_element(*self.email).is_displayed()
 
-    def wrong_email_check(self, wrong_email, user_password):
-        email = self.driver.find_element(*self.email)
-        email.send_keys(wrong_email)
-        password = self.driver.find_element(*self.password)
-        password.send_keys(user_password)
-        self.driver.find_element(*self.submit).click()
+    def get_email_placeholder(self):
+        return self.driver.find_element(*self.email).get_attribute("placeholder")
+
+    def enter_email(self, email_input):
+        self.driver.find_element(*self.email).send_keys(email_input)
+
+    def empty_email_error(self):
+        return self.driver.find_element(*self.email_valid_error).text
+
+    def empty_password_error(self):
+        return self.driver.find_element(*self.password_valid_error).text
+
 
     def password_label_check(self):
-        assert self.driver.find_element(*self.label_password).text.title() == "Password"
+        return self.driver.find_element(*self.label_password).text.title()
 
-    def valid_password_check(self, user_password):
-        password = self.driver.find_element(*self.password)
-        assert password.is_displayed()
-        assert password.get_attribute("placeholder") == "enter your passsword"
-        password.send_keys(user_password)
 
-    def wrong_pass_check(self, username, wrong_pass):
-        email = self.driver.find_element(*self.email)
-        email.send_keys(username)
+    def is_password_displayed(self):
+        return self.driver.find_element(*self.password).is_displayed()
+
+    def get_password_placeholder(self):
+        return self.driver.find_element(*self.password).get_attribute("placeholder")
+
+    def enter_password(self, pass_input):
         password = self.driver.find_element(*self.password)
-        password.send_keys(wrong_pass)
+        password.send_keys(pass_input)
+
+    def is_button_enabled(self):
+        return self.driver.find_element(*self.submit).is_enabled()
+
+    def login_button_text(self):
+        return self.driver.find_element(*self.submit).get_attribute("value")
+
+    def submit_click(self):
         self.driver.find_element(*self.submit).click()
-
-    def submit_check(self):
-        submit_button = self.driver.find_element(*self.submit)
-        assert submit_button.is_enabled()
-        submit_button.click()
         time.sleep(3)
-        homepage = HomePage(self.driver)
-        return homepage
+        # homepage = HomePage(self.driver)
+        # return homepage
 
-    def top_text(self):
-        mail_text = self.driver.find_element(*self.mail_top_text)
-        assert mail_text.is_displayed()
+    def validate_toast_msg(self):
+        return self.driver.find_element(*self.toast_msg).text
+
+    def is_top_text_displayed(self):
+        return self.driver.find_element(*self.mail_top_text).is_displayed()
+
 
     def validate_icons(self):
         icons = self.driver.find_elements(*self.top_icons)
@@ -75,25 +86,34 @@ class LoginPage:
             href = icon.find_element(By.XPATH, "..").get_attribute("href")
             print(f"{icon.get_attribute('class')} = {href}")
 
-    def validate_page_texts_and_ui(self):
-        assert self.driver.find_element(*self.small_text).text == "We Make Your Shopping Simple"
-        assert self.driver.find_element(*self.title_text).text == "Practice Website for Rahul Shetty Academy Students"
-        assert self.driver.find_element(*self.blink_text).text == "Register to sign in with your personal account"
-        assert self.driver.find_element(*self.login_title).text == "Log in"
+    def validate_small_text(self):
+        return self.driver.find_element(*self.small_text).text
+
+    def validate_title_text(self):
+        return self.driver.find_element(*self.title_text).text
+    def validate_blink_text(self):
+        return self.driver.find_element(*self.blink_text).text
+    def validate_login_text(self):
+        return self.driver.find_element(*self.login_title).text
+
+    def forgot_password_id_displayed(self):
+        return self.driver.find_element(*self.forgot_pass).is_displayed()
 
     def validate_forgot_pass(self):
-        forgot_pass = self.driver.find_element(*self.forgot_pass)
-        forgot_pass.is_displayed()
-        assert forgot_pass.text in self.driver.page_source
+        return self.driver.find_element(*self.forgot_pass).text
+
+    def register_link_id_displayed(self):
+        return self.driver.find_element(*self.register_link).is_displayed()
 
     def validate_register_link(self):
-        register_link = self.driver.find_element(*self.register_link)
-        register_link.is_displayed()
-        assert register_link.text == "Don't have an account? Register here"
+        return self.driver.find_element(*self.register_link).text
+        # assert register_link.text == "Don't have an account? Register here"
 
-    def login(self):
-        assert "client" in self.driver.current_url
-        print("Title is:", self.driver.title)
+    def verify_login_title(self):
+        return self.driver.title
+
+    def verify_current_page(self):
+        return self.driver.current_url
 
     def click_forgot_pass(self):
         self.driver.find_element(*self.forgot_pass).click()
@@ -102,3 +122,11 @@ class LoginPage:
     def click_register_link(self):
         self.driver.find_element(*self.register_link).click()
         time.sleep(2)
+
+    def navigate_using_keyboard(self, email):
+        for _ in range(6):
+            self.body.send_keys(Keys.TAB)
+            time.sleep(3)
+            self.body.send_keys("email.com")
+            time.sleep(5)
+

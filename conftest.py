@@ -22,3 +22,4 @@ def selenium_driver(request):
     request.cls.driver = driver
 
     driver.get("https://rahulshettyacademy.com/client")
+    driver.maximize_window()

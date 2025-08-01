@@ -44,10 +44,8 @@ class LoginPage:
     def empty_password_error(self):
         return self.driver.find_element(*self.password_valid_error).text
 
-
     def password_label_check(self):
         return self.driver.find_element(*self.label_password).text.title()
-
 
     def is_password_displayed(self):
         return self.driver.find_element(*self.password).is_displayed()
@@ -77,7 +75,6 @@ class LoginPage:
     def is_top_text_displayed(self):
         return self.driver.find_element(*self.mail_top_text).is_displayed()
 
-
     def validate_icons(self):
         icons = self.driver.find_elements(*self.top_icons)
         assert len(icons) >= 4
@@ -91,8 +88,10 @@ class LoginPage:
 
     def validate_title_text(self):
         return self.driver.find_element(*self.title_text).text
+
     def validate_blink_text(self):
         return self.driver.find_element(*self.blink_text).text
+
     def validate_login_text(self):
         return self.driver.find_element(*self.login_title).text
 
@@ -129,4 +128,3 @@ class LoginPage:
             time.sleep(3)
             self.body.send_keys("email.com")
             time.sleep(5)
-

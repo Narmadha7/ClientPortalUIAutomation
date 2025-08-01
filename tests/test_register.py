@@ -11,10 +11,11 @@ from utils.customLogger import getLogger
 @pytest.mark.usefixtures("selenium_driver")
 class TestRegisterPage(BaseTest):
 
+
+
     def test_register(self):
         logger = getLogger()
         logger.info("Starting Login Test")
-        logger.warning("Password field empty")
 
         self.driver.maximize_window()
 

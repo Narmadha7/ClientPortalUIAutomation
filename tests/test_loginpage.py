@@ -113,7 +113,7 @@ class TestLoginPage(BaseTest):
         assert "Register here" in login.validate_register_link()
         login.click_register_link()
 
-    # @pytest.mark.positive
+    # @pytest.mark.positive   ---- need to work once register page completes
     # def test_validate_register(self):
     #     login = LoginPage(self.driver)
     #     assert login.register_link_id_displayed() == bool("True")

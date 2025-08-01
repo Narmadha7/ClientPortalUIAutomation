@@ -32,21 +32,40 @@ class RegisterPage:
         self.success_msg = (By.CSS_SELECTOR, ".headcolor")
         self.login_button = (By.XPATH, "//button[text()='Login']")
 
-    def validate_firstname(self):
-        assert self.driver.find_element(*self.firstname_label).text.title() == "First Name"
+    def firstname_label_check(self):
+        return self.driver.find_element(*self.firstname_label).text.title()
+
+    def lastname_label_check(self):
+        return self.driver.find_element(*self.lastname_label).text.title()
+
+    def email_label_check(self):
+        return self.driver.find_element(*self.email_label).text.title()
+
+    def email_label_check(self):
+        return self.driver.find_element(*self.phone_label).text.title()
+
+    def is_email_displayed(self):
+        return self.driver.find_element(*self.email).is_displayed()
+
+    def get_firstname_placeholder(self):
         assert self.driver.find_element(*self.firstname_txt).get_attribute("placeholder") == "First Name"
 
-    def validate_lastname(self):
-        assert self.driver.find_element(*self.lastname_label).text.title() == "Last Name"
+    def get_lastname_placeholder(self):
         assert self.driver.find_element(*self.lastname_txt).get_attribute("placeholder") == "Last Name"
 
-    def validate_email(self):
-        assert self.driver.find_element(*self.email_label).text.title() == "Email"
+    def get_email_placeholder(self):
         assert self.driver.find_element(*self.email_txt).get_attribute("placeholder") == "email@example.com"
 
-    def validate_phone(self):
-        assert self.driver.find_element(*self.phone_label).text.title() == "Phone Number"
+    def get_phone_placeholder(self):
         assert self.driver.find_element(*self.phone_txt).get_attribute("placeholder") == "enter your number"
+
+    def enter_email(self, email_input):
+        self.driver.find_element(*self.email).send_keys(email_input)
+
+    def empty_email_error(self):
+        return self.driver.find_element(*self.email_valid_error).text
+
+
 
     def validate_password(self):
         assert self.driver.find_element(*self.password_label).text.title() == "Password"

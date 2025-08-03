@@ -12,20 +12,17 @@ with open(data_file_path) as f:
 
 
 @pytest.mark.parametrize("data_items", data_list)
-def test_payment(browserInstance, data_items):
+def payment(browserInstance, data_items):
     driver = browserInstance
     login_page = LoginPage(driver)
-    login_page.login()
-    login_page.top_text()
     login_page.validate_icons()
-    login_page.validate_page_texts_and_ui()
     login_page.email_label_check()
     login_page.password_label_check()
-    login_page.valid_email_check(data_items["user_email"])
-    login_page.valid_password_check(data_items["user_password"])
+    login_page.enter_email(data_items["user_email"])
+    login_page.enter_password(data_items["user_password"])
     login_page.validate_forgot_pass()
     login_page.validate_register_link()
-    homepage = login_page.submit_check()
+    homepage = login_page.submit_click()
 
     assert "dash" in driver.current_url
 

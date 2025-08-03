@@ -9,5 +9,17 @@ class DriverClass:
             driver = webdriver.Chrome()
         elif pytest.browser == "firefox":
             driver = webdriver.Firefox()
-        driver.implicitly_wait(2)
         return driver
+
+    # @staticmethod
+    # def get_driver_details(config_options):   # fixture name
+    #     driver = None
+    #     if config_options["browser"] == "chrome":
+    #         driver = webdriver.Chrome()
+    #     elif config_options["browser"] == "firefox":
+    #         driver = webdriver.Firefox()
+    #     return driver
+
+
+
+

@@ -2,13 +2,10 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from BasePage.BasePage import BasePage
 
-
-class ForgotPassPage(BasePage):
+class ForgotPassPage:
 
     def __init__(self, driver):
-        super().__init__(driver)
         self.driver = driver
         self.title = (By.XPATH, "//h3[text()='Enter New Password']")
         self.label_email = (By.XPATH, "//label[text()='Email']")
@@ -22,55 +19,71 @@ class ForgotPassPage(BasePage):
         self.login_link = (By.LINK_TEXT, "Login")
         self.register_link = (By.LINK_TEXT, "Register")
 
-    def login(self):
-        assert "client" in self.driver.current_url
-        print("Title is:", self.driver.title)
+    def verify_page(self):
+        return self.driver.current_url
 
-    def validate_email(self):
+    def verify_title(self):
+        return self.driver.title
+
+    def email_label(self):
+        return self.driver.find_element(*self.label_email).text.title()
+
+    def email_placeholder(self):
+        return self.driver.find_element(*self.email).get_attribute("placeholder")
+
+    def email_is_displayed(self):
+        return self.driver.find_element(*self.email).is_displayed()
+
+    def enter_email(self, email_input):
         # assert self.driver.find_element(*self.label_email).text.title() == "Email"
-        assert self.get_text(self.label_email) == "Email"
-        # email = self.driver.find_element(*self.email)
-        # email.is_displayed()
-        # print(email.get_attribute("placeholder"))
-        # email.send_keys("brainandbeauty@test")
-        # time.sleep(2)
-        self.type(self.email, "brainandbeauty@test")
+        # assert self.get_text(self.label_email) == "Email"
+        self.driver.find_element(*self.email).send_keys(email_input)
         time.sleep(2)
 
-    def validate_password(self):
+    def password_label(self):
+        return self.driver.find_element(*self.label_password).text.title()
+
+    def password_placeholder(self):
+        return self.driver.find_element(*self.password).get_attribute("placeholder")
+
+    def password_is_displayed(self):
+        return self.driver.find_element(*self.password).is_displayed()
+
+    def enter_password(self, passwd):
         # assert self.driver.find_element(*self.label_password).text.title() == "Password"
-        assert self.get_text(self.label_password) == "Password"
-        # password = self.driver.find_element(*self.password)
-        # password.is_displayed()
-        # print(password.get_attribute("placeholder"))
-        # password.send_keys("Brain@1234")
-        # time.sleep(2)
-        self.type(self.password, "Brain@1234")
+        # assert self.get_text(self.label_password) == "Password"
+        self.driver.find_element(*self.password).send_keys(passwd)
         time.sleep(2)
 
-    def validate_confirm_password(self):
+    def con_password_label(self):
+        return self.driver.find_element(*self.label_confirm_pass).text.title()
+
+    def con_password_placeholder(self):
+        return self.driver.find_element(*self.confirm_pass).get_attribute("placeholder")
+
+    def con_password_is_displayed(self):
+        return self.driver.find_element(*self.confirm_pass).is_displayed()
+
+    def validate_confirm_password(self, conpass):
         # assert self.driver.find_element(*self.label_confirm_pass).text.title() == "Confirm Password"
-        assert self.get_text(self.label_confirm_pass) == "Confirm Password"
-        print(self.get_text(self.label_confirm_pass))
-        # confirm_password = self.driver.find_element(*self.confirm_pass)
-        # confirm_password.is_displayed()
-        self.is_displayed(self.confirm_pass)
-        # print(confirm_password.get_attribute("placeholder"))
-        # confirm_password.send_keys("Brain@12")
-        self.type(self.confirm_pass, "Brain@1234")
+        # assert self.get_text(self.label_confirm_pass) == "Confirm Password"
+        # print(self.get_text(self.label_confirm_pass))
+        self.driver.find_element(*self.confirm_pass).send_keys(conpass)
         time.sleep(2)
 
     def click_submit(self):
-        # button = self.driver.find_element(*self.submit_button)
-        # assert button.is_enabled()
-        self.is_enabled(self.submit_button)
+        self.driver.find_element(*self.submit_button).click()
+
+    def is_enabled(self):
+        return self.driver.find_element(*self.submit_button).is_enabled()
+        # self.is_enabled(self.submit_button)
         # button.click()
-        self.click(self.submit_button)
+        # self.click(self.submit_button)
 
     def validate_login_link(self):
-        # self.driver.find_element(*self.login_link).is_displayed()
-        self.is_displayed(self.login_link)
+        return self.driver.find_element(*self.login_link).is_displayed()
+        # self.is_displayed(self.login_link)
 
     def validate_register_link(self):
-        # self.driver.find_element(*self.register_link).is_displayed()
-        self.is_displayed(self.register_link)
+        return self.driver.find_element(*self.register_link).is_displayed()
+        # self.is_displayed(self.register_link)

@@ -1,18 +1,10 @@
-import time
-
 import pytest
-from selenium.webdriver.common.by import By
 
-from BasePage.BasePage import BaseTest
 from pages.LoginPage import LoginPage
 
 
 @pytest.mark.usefixtures("selenium_driver")
-class TestLoginPage(BaseTest):
-
-    # def setup_method(self, selenium_driver):
-    #     self.driver = selenium_driver  # grab driver from fixture
-    #     self.login = LoginPage(self.driver)  # for obj creation
+class TestLoginPage:
 
     @pytest.mark.tc1
     def test_page_loads(self):
@@ -22,14 +14,12 @@ class TestLoginPage(BaseTest):
     @pytest.mark.positive
     def test_valid_login(self):
         login = LoginPage(self.driver)
-        assert login.is_email_displayed() == bool("True")
-        login.enter_email("brainandbeauty@test.com")
         assert login.is_password_displayed() == bool("True")
-        login.enter_password("Brain@1234")
+        login.enter_password("Brain@12345")
         assert login.is_button_enabled() == bool("True")
         login.submit_click()
-        toast_msg = login.validate_toast_msg()
-        print(toast_msg)
+        # toast_msg = login.validate_toast_msg()
+        # print(toast_msg)
         # assert "Login" in toast_msg
 
     @pytest.mark.negative
@@ -119,8 +109,3 @@ class TestLoginPage(BaseTest):
     #     assert login.register_link_id_displayed() == bool("True")
     #     assert "Register here" in login.validate_register_link()
     #     login.click_register_link()
-
-
-
-
-

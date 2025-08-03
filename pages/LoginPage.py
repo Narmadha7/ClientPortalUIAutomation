@@ -20,7 +20,7 @@ class LoginPage:
         self.login_title = (By.CSS_SELECTOR, ".login-title")
         self.page_title = ()
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
-        self.register_link = (By.CSS_SELECTOR, ".login-wrapper p")
+        self.register_link = (By.CSS_SELECTOR, ".text-reset")
         self.toast_msg = (By.CSS_SELECTOR, "#toast-container")
         self.email_valid_error = (By.XPATH, "//div[contains(text(), '*Email is required')]")
         self.password_valid_error = (By.XPATH, "//div[contains(text(), '*Password is required')]")
@@ -106,7 +106,6 @@ class LoginPage:
 
     def validate_register_link(self):
         return self.driver.find_element(*self.register_link).text
-        # assert register_link.text == "Don't have an account? Register here"
 
     def verify_login_title(self):
         return self.driver.title

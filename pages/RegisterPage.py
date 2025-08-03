@@ -31,85 +31,111 @@ class RegisterPage:
         self.login_link = (By.CSS_SELECTOR, ".login-wrapper-footer-text")
         self.success_msg = (By.CSS_SELECTOR, ".headcolor")
         self.login_button = (By.XPATH, "//button[text()='Login']")
+        self.toast_msg = (By.CSS_SELECTOR, "#toast-container")
+        self.email_valid_error = (By.XPATH, "//div[contains(text(), '*Email is required')]")
+        self.password_valid_error = (By.XPATH, "//div[contains(text(), '*Password is required')]")
+        self.firstname_valid_error = (By.XPATH, "//div[contains(text(), '*First Name is required')]")
+        self.phone_valid_error = (By.XPATH, "//div[contains(text(), '*Phone Number is required')]")
+        self.confirm_password_valid_error = (By.XPATH, "//div[contains(text(), 'Confirm Password is required')]")
+        self.age_checkbox_valid_error = (By.XPATH, "//div[contains(text(), '*Please check above checkbox')]")
+        self.password_mismatch_error = (By.XPATH, "//div[contains(text(), 'Password and Confirm Password must match with each other.')]")
 
     def firstname_label_check(self):
         return self.driver.find_element(*self.firstname_label).text.title()
 
+    def get_firstname_placeholder(self):
+        return self.driver.find_element(*self.firstname_txt).get_attribute("placeholder")
+
+    def is_firstname_displayed(self):
+        return self.driver.find_element(*self.firstname_txt).is_displayed()
+
+    def enter_firstname(self, email_input):
+        self.driver.find_element(*self.firstname_txt).send_keys(email_input)
+
+    def empty_firstname_error(self):
+        return self.driver.find_element(*self.firstname_valid_error).text
+
     def lastname_label_check(self):
         return self.driver.find_element(*self.lastname_label).text.title()
+
+    def get_lastname_placeholder(self):
+        return self.driver.find_element(*self.lastname_txt).get_attribute("placeholder")
+
+    def is_lastname_displayed(self):
+        return self.driver.find_element(*self.lastname_txt).is_displayed()
+
+    def enter_lastname(self, email_input):
+        self.driver.find_element(*self.lastname_txt).send_keys(email_input)
 
     def email_label_check(self):
         return self.driver.find_element(*self.email_label).text.title()
 
-    def email_label_check(self):
-        return self.driver.find_element(*self.phone_label).text.title()
+    def get_email_placeholder(self):
+        return self.driver.find_element(*self.email_txt).get_attribute("placeholder")
 
     def is_email_displayed(self):
-        return self.driver.find_element(*self.email).is_displayed()
-
-    def get_firstname_placeholder(self):
-        assert self.driver.find_element(*self.firstname_txt).get_attribute("placeholder") == "First Name"
-
-    def get_lastname_placeholder(self):
-        assert self.driver.find_element(*self.lastname_txt).get_attribute("placeholder") == "Last Name"
-
-    def get_email_placeholder(self):
-        assert self.driver.find_element(*self.email_txt).get_attribute("placeholder") == "email@example.com"
-
-    def get_phone_placeholder(self):
-        assert self.driver.find_element(*self.phone_txt).get_attribute("placeholder") == "enter your number"
+        return self.driver.find_element(*self.email_txt).is_displayed()
 
     def enter_email(self, email_input):
-        self.driver.find_element(*self.email).send_keys(email_input)
+        self.driver.find_element(*self.email_txt).send_keys(email_input)
 
     def empty_email_error(self):
         return self.driver.find_element(*self.email_valid_error).text
 
+    def phone_label_check(self):
+        return self.driver.find_element(*self.phone_label).text.title()
 
+    def get_phone_placeholder(self):
+        return self.driver.find_element(*self.phone_txt).get_attribute("placeholder")
 
-    def validate_password(self):
-        assert self.driver.find_element(*self.password_label).text.title() == "Password"
-        assert self.driver.find_element(*self.password_txt).get_attribute("placeholder") == "Passsword"
+    def is_phone_displayed(self):
+        return self.driver.find_element(*self.phone_txt).is_displayed()
 
-    def validate_confirm_password(self):
-        assert self.driver.find_element(*self.confirm_password_label).text.title() == "Confirm Password"
-        assert self.driver.find_element(*self.confirm_password_txt).get_attribute("placeholder") == "Confirm Passsword"
+    def enter_phone(self, email_input):
+        self.driver.find_element(*self.phone_txt).send_keys(email_input)
 
-    def validate_occupation(self):
-        assert self.driver.find_element(*self.occupation_label).text.title() == "Occupation"
+    def empty_phone_error(self):
+        return self.driver.find_element(*self.phone_valid_error).text
 
-    def validate_gender(self):
-        assert self.driver.find_element(*self.gender_label).text.title() == "Gender"
+    def password_label_check(self):
+        return self.driver.find_element(*self.password_label).text.title()
 
-    def enter_firstname(self, firstname):
-        name = self.driver.find_element(*self.firstname_txt)
-        name.is_displayed()
-        name.send_keys(firstname)
+    def get_password_placeholder(self):
+        return self.driver.find_element(*self.password_txt).get_attribute("placeholder")
 
-    def enter_lastname(self, lastname):
-        name = self.driver.find_element(*self.lastname_txt)
-        name.is_displayed()
-        name.send_keys(lastname)
+    def is_password_displayed(self):
+        return self.driver.find_element(*self.password_txt).is_displayed()
 
-    def enter_email(self, email_id):
-        email = self.driver.find_element(*self.email_txt)
-        email.is_displayed()
-        email.send_keys(email_id)
+    def enter_password(self, email_input):
+        self.driver.find_element(*self.password_txt).send_keys(email_input)
 
-    def enter_phone(self, phone_number):
-        phone = self.driver.find_element(*self.phone_txt)
-        phone.is_displayed()
-        phone.send_keys(phone_number)
+    def empty_password_error(self):
+        return self.driver.find_element(*self.password_valid_error).text
 
-    def enter_password(self, password):
-        passwd = self.driver.find_element(*self.password_txt)
-        passwd.is_displayed()
-        passwd.send_keys(password)
+    def confirm_password_label_check(self):
+        return self.driver.find_element(*self.confirm_password_label).text.title()
 
-    def enter_confirm_password(self, confirm_pass):
-        confirm_pwd = self.driver.find_element(*self.confirm_password_txt)
-        confirm_pwd.is_displayed()
-        confirm_pwd.send_keys(confirm_pass)
+    def get_confirm_password_placeholder(self):
+        return self.driver.find_element(*self.confirm_password_txt).get_attribute("placeholder")
+
+    def is_confirm_password_displayed(self):
+        return self.driver.find_element(*self.confirm_password_txt).is_displayed()
+
+    def enter_confirm_password(self, email_input):
+        return self.driver.find_element(*self.confirm_password_txt).send_keys(email_input)
+
+    def empty_confirm_password_error(self):
+        return self.driver.find_element(*self.confirm_password_valid_error).text
+
+    def occupation_label_check(self):
+        return self.driver.find_element(*self.occupation_label).text.title()
+
+    def gender_label_check(self):
+        return self.driver.find_element(*self.gender_label).text.title()
+
+    def is_occupation_displayed(self):
+        return self.driver.find_element(*self.occupation_txt).is_displayed()
+
 
     def select_occupation(self):
         occupation_dropdown = Select(self.driver.find_element(*self.occupation_txt))
@@ -117,20 +143,23 @@ class RegisterPage:
         time.sleep(5)
 
     def select_gender(self):
-        self.driver.find_element(*self.female_radio).click()
-        time.sleep(2)
+        return self.driver.find_element(*self.female_radio).click()
 
     def checkbox_age_txt(self):
-        print(self.driver.find_element(*self.checkbox_text).text)
+        return self.driver.find_element(*self.checkbox_text).text
 
     def select_checkbox(self):
         self.driver.find_element(*self.input_checkbox).click()
 
+    def empty_age_checkbox_error(self):
+        return self.driver.find_element(*self.age_checkbox_valid_error).text
+
     def click_submit(self):
-        submit_button = self.driver.find_element(*self.submit_button)
-        assert submit_button.is_enabled()
-        submit_button.click()
+        self.driver.find_element(*self.submit_button).click()
         time.sleep(3)
+
+    def is_button_enabled(self):
+        return self.driver.find_element(*self.submit_button).is_enabled()
 
     def verify_login_link(self):
         try:
@@ -145,3 +174,6 @@ class RegisterPage:
 
     def click_login_button(self):
         self.driver.find_element(*self.login_button).click()
+
+    def verify_password_mismatch_error(self):
+        return self.driver.find_element(*self.password_mismatch_error).text

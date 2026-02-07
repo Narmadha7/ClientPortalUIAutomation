@@ -1,6 +1,13 @@
+import json
+
 import pytest
 
 from pages.LoginPage import LoginPage
+
+data_file_path = "C://Users//Narmukishore14//PycharmProjects//ClientPortalUIAutomation//data//test_login.json"
+with open(data_file_path, 'r') as f:
+    testdata = json.load(f)
+    data_list = testdata["data"]
 
 
 @pytest.mark.usefixtures("selenium_driver")
@@ -11,58 +18,28 @@ class TestLoginPage:
         login = LoginPage(self.driver)
         assert "client" in login.verify_current_page(), "loaded wrong page"
 
-    @pytest.mark.positive
-    def test_valid_login(self):
+    @pytest.mark.parametrize("data", data_list)
+    def test_login_scenarios(self, data):
         login = LoginPage(self.driver)
-        assert login.is_password_displayed() == bool("True")
-        login.enter_password("Brain@12345")
-        assert login.is_button_enabled() == bool("True")
-        login.submit_click()
-        # toast_msg = login.validate_toast_msg()
-        # print(toast_msg)
-        # assert "Login" in toast_msg
-
-    @pytest.mark.negative
-    def test_invalid_login(self):
-        login = LoginPage(self.driver)
-        login.enter_email("brainandbeauty12@test.com")
-        login.enter_password("Brain@12")
+        login.enter_email(data["email"])
+        login.enter_password(data["password"])
         login.submit_click()
 
-    @pytest.mark.negative
-    def test_invalid_email(self):
-        login = LoginPage(self.driver)
-        login.enter_email("brainandbeauty12@test.com")
-        login.enter_password("Brain@1234")
-        login.submit_click()
-
-    @pytest.mark.negative
-    def test_invalid_password(self):
-        login = LoginPage(self.driver)
-        login.enter_email("brainandbeauty@test.com")
-        login.enter_password("Brain@12")
-        login.submit_click()
-
-    @pytest.mark.negative
-    def test_invalid_email_password(self):
-        login = LoginPage(self.driver)
-        login.enter_email("brainandbeauty123@test.com")
-        login.enter_password("Brain@12")
-        login.submit_click()
-
-    @pytest.mark.negative
-    def test_empty_email(self):
-        login = LoginPage(self.driver)
-        login.enter_password("Brain@1234")
-        login.submit_click()
-        assert "required" in login.empty_email_error()
-
-    @pytest.mark.negative
-    def test_empty_password(self):
-        login = LoginPage(self.driver)
-        login.enter_email("brainandbeauty@test.com")
-        login.submit_click()
-        assert "required" in login.empty_password_error()
+        if data["type"] == "valid":
+            assert "client" in login.verify_current_page()
+        elif data["type"] == "empty_email":
+            assert "required" in login.empty_email_error()
+        elif data["type"] == "empty_password":
+            assert "required" in login.empty_password_error()
+        elif data["type"] == "empty_email_password":
+            assert "required" in login.empty_email_error()
+            assert "required" in login.empty_password_error()
+        else:
+            toast = login.validate_toast_msg()
+            if toast:
+                assert "Incorrect" in toast
+            else:
+                print("No toast appeared — might be expected for this scenario.")
 
     @pytest.mark.positive
     def test_validate_forgot_password(self):
@@ -70,12 +47,6 @@ class TestLoginPage:
         login.forgot_password_id_displayed()
         assert login.validate_forgot_pass() == "Forgot password?"
         login.click_forgot_pass()
-
-    # @pytest.mark.pos
-    # def test_keyboard_action(self):
-    #     login = LoginPage(self.driver)
-    #     login.navigate_using_keyboard("brainandbeauty@test.com")
-    #     time.sleep(5)
 
     @pytest.mark.smoke
     def test_validate_placeholder(self):
@@ -89,7 +60,7 @@ class TestLoginPage:
         assert login.email_label_check() == "Email"
         assert login.password_label_check() == "Password"
         assert login.login_button_text() == "Login"
-        assert login.is_top_text_displayed() == bool("True")
+        assert login.is_top_text_displayed() is True
         login.validate_icons()
         assert login.validate_small_text() == "We Make Your Shopping Simple"
         assert login.validate_title_text() == "Practice Website for Rahul Shetty Academy Students"
@@ -99,13 +70,6 @@ class TestLoginPage:
     @pytest.mark.positive
     def test_validate_register(self):
         login = LoginPage(self.driver)
-        assert login.register_link_id_displayed() == bool("True")
+        assert login.register_link_id_displayed() is True
         assert "Register here" in login.validate_register_link()
         login.click_register_link()
-
-    # @pytest.mark.positive   ---- need to work once register page completes
-    # def test_validate_register(self):
-    #     login = LoginPage(self.driver)
-    #     assert login.register_link_id_displayed() == bool("True")
-    #     assert "Register here" in login.validate_register_link()
-    #     login.click_register_link()

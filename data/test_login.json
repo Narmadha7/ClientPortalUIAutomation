@@ -1,0 +1,39 @@
+{
+  "data": [
+  {
+    "email": "brainandbeauty@test.com",
+    "password": "Brain@4321",
+    "type": "valid"
+  },
+  {
+    "email": "wrongemail@test.com",
+    "password": "Brain@12345",
+    "type": "invalid_email"
+  },
+  {
+    "email": "brainandbeauty@test.com",
+    "password": "wrongpass",
+    "type": "invalid_password"
+  },
+  {
+    "email": "wrong@test.com",
+    "password": "wrongpass",
+    "type": "invalid_email_password"
+  },
+  {
+    "email": "",
+    "password": "Brain@12345",
+    "type": "empty_email"
+  },
+  {
+    "email": "brainandbeauty@test.com",
+    "password": "",
+    "type": "empty_password"
+  },
+    {
+    "email": "",
+    "password": "",
+    "type": "empty_email_password"
+  }
+]
+}

@@ -1,0 +1,31 @@
+{
+  "valid_data": [
+    {
+      "email": "validuser1@test.com",
+      "password": "StrongPass#123",
+      "confirm_password": "StrongPass#123"
+    },
+    {
+      "email": "validuser2@test.com",
+      "password": "Test@456",
+      "confirm_password": "Test@456"
+    }
+  ],
+  "invalid_data": [
+    {
+      "email": "invalidemail",
+      "password": "short",
+      "confirm_password": "short"
+    },
+    {
+      "email": "",
+      "password": "Pass@123",
+      "confirm_password": ""
+    },
+    {
+      "email": "user@test.com",
+      "password": "Mismatch@123",
+      "confirm_password": "Wrong@123"
+    }
+  ]
+}

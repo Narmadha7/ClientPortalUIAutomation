@@ -39,6 +39,10 @@ class RegisterPage:
         self.confirm_password_valid_error = (By.XPATH, "//div[contains(text(), 'Confirm Password is required')]")
         self.age_checkbox_valid_error = (By.XPATH, "//div[contains(text(), '*Please check above checkbox')]")
         self.password_mismatch_error = (By.XPATH, "//div[contains(text(), 'Password and Confirm Password must match with each other.')]")
+        self.phone_invalid_error = (By.XPATH, "//div[contains(text(), '*Phone Number must be 10 digit')]")
+        self.firstname_low_char_error = (By.XPATH, "//div[contains(text(), '*First Name must be 3 or more character long')]")
+        self.firstname_high_char_error = (By.XPATH, "//div[contains(text(), '*First Name must be 12 or less character long')]")
+        self.email_invalid_error = (By.XPATH, "//div[contains(text(), 'Enter Valid Email')]")
 
     def firstname_label_check(self):
         return self.driver.find_element(*self.firstname_label).text.title()
@@ -177,3 +181,17 @@ class RegisterPage:
 
     def verify_password_mismatch_error(self):
         return self.driver.find_element(*self.password_mismatch_error).text
+
+    def verify_phone_invalid_error(self):
+        return self.driver.find_element(*self.phone_invalid_error).text
+
+    def verify_firstname_low_char_error(self):
+        return self.driver.find_element(*self.firstname_low_char_error).text
+
+    def verify_firstname_high_char_error(self):
+        return self.driver.find_element(*self.firstname_high_char_error).text
+
+    def verify_email_invalid_error(self):
+        return self.driver.find_element(*self.email_invalid_error).text
+
+

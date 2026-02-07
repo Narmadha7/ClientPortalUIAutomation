@@ -1,0 +1,46 @@
+{
+  "valid_data": [
+    {
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "johndoe",
+      "phone": "9876543210",
+      "password": "Password123!",
+      "confirm_password": "Password123!"
+    }
+  ],
+  "invalid_data": [
+    {
+      "first_name": "",
+      "last_name": "Smith",
+      "email": "invalidemail.com",
+      "phone": "1234",
+      "password": "pass",
+      "confirm_password": "pass"
+    },
+    {
+      "first_name": "Vedha",
+      "last_name": "Raj",
+      "email": "vedha.raj",
+      "phone": "1234567890",
+      "password": "Brain#143",
+      "confirm_password": "Brain#143"
+    },
+    {
+      "first_name": "Aishu",
+      "last_name": "Kumar",
+      "email": "aishu.kumar",
+      "phone": "9876543210",
+      "password": "Test@123",
+      "confirm_password": "Test@123"
+    },
+    {
+      "first_name": "Deepa",
+      "last_name": "Shree",
+      "email": "deepa.shree",
+      "phone": "9090909",
+      "password": "Hello#321",
+      "confirm_password": "Hello#321"
+    }
+  ]
+}

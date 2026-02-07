@@ -64,7 +64,7 @@ class ForgotPassPage:
     def con_password_is_displayed(self):
         return self.driver.find_element(*self.confirm_pass).is_displayed()
 
-    def validate_confirm_password(self, conpass):
+    def enter_confirm_password(self, conpass):
         # assert self.driver.find_element(*self.label_confirm_pass).text.title() == "Confirm Password"
         # assert self.get_text(self.label_confirm_pass) == "Confirm Password"
         # print(self.get_text(self.label_confirm_pass))

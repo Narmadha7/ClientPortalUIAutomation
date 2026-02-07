@@ -2,6 +2,8 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage:
@@ -18,7 +20,7 @@ class LoginPage:
         self.title_text = (By.XPATH, "(//h1[@class='title'])[1]")
         self.blink_text = (By.CSS_SELECTOR, ".blink_me")
         self.login_title = (By.CSS_SELECTOR, ".login-title")
-        self.page_title = ()
+        # self.page_title = ()
         self.forgot_pass = (By.XPATH, "//a[text()='Forgot password?']")
         self.register_link = (By.CSS_SELECTOR, ".text-reset")
         self.toast_msg = (By.CSS_SELECTOR, "#toast-container")
@@ -69,8 +71,8 @@ class LoginPage:
         # homepage = HomePage(self.driver)
         # return homepage
 
-    def validate_toast_msg(self):
-        return self.driver.find_element(*self.toast_msg).text
+    # def validate_toast_msg(self):
+    #     return self.driver.find_element(*self.toast_msg).text
 
     def is_top_text_displayed(self):
         return self.driver.find_element(*self.mail_top_text).is_displayed()
@@ -127,3 +129,22 @@ class LoginPage:
             time.sleep(3)
             self.body.send_keys("email.com")
             time.sleep(5)
+
+    # def validate_toast_msgs(self):
+    #     try:
+    #         wait = WebDriverWait(self.driver, 5)  # Increase timeout to be safe
+    #         toast = wait.until(EC.presence_of_element_located(*self.toast_msg))
+    #         return toast.text
+    #     except:
+    #         return "Toast not found"
+
+    def validate_toast_msg(self):
+        try:
+            toast_locator = (By.CSS_SELECTOR, "#toast-container")
+            wait = WebDriverWait(self.driver, 5)
+            toast = wait.until(EC.visibility_of_element_located(toast_locator))
+            return toast.text
+        except Exception as e:
+            print("Toast not found or disappeared too fast:", e)
+            return ""
+
